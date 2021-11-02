@@ -12,7 +12,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->homeModel = new User();
-        $this->middleware($this->sessionGet('user'), ['/dashboard']);
+        // $this->middleware($this->sessionGet('user'), ['/dashboard']);
     }
 
     public function index()

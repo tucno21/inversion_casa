@@ -3,8 +3,7 @@
 
 <div class="card border">
     <div class="card-header">
-        <a class="btn btn-primary" href="<?= base_url('/dashboard/create') ?>" role="button">Registrar Gasto</a>
-        <a class="btn btn-danger" href="<?= base_url('/dashboard/eliminados') ?>" role="button">Gastos Eliminados</a>
+        <a class="btn btn-primary" href="<?= base_url('/dashboard') ?>" role="button">Regresar</a>
     </div>
     <div class="card-body">
 
@@ -18,7 +17,6 @@
                     <th scope="col">Precio</th>
                     <th scope="col">Total</th>
                     <th scope="col">F-registro</th>
-                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,10 +29,6 @@
                         <td><?= $inv->price ?></td>
                         <td><?= ($inv->price * $inv->cant) ?></td>
                         <td><?= $inv->created_at ?></td>
-                        <td>
-                            <a href="<?= base_url('/dashboard/edit?id=' . $inv->id) ?>" class="btn btn-warning">Editar</a>
-                            <a href="<?= base_url('/dashboard/delete?id=' . $inv->id) ?>" class="btn btn-danger">Eliminar</a>
-                        </td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
