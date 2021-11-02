@@ -15,9 +15,9 @@ $session = new Session;
     </div>
     <div class="card-body">
         <div class="container">
-            <form method="POST" action="<?= base_url('/dashboard/update') ?>" enctype="multipart/form-data">
+            <form method="POST" action="<?= base_url('/dashboard/edit') ?>" enctype="multipart/form-data">
                 <input type="hidden" name="id_user" value="<?= $session->get('user')->id ?>">
-                <input type="hidden" name="id" value="<?= isset($inversion->id) ? $inversion->id : $id ?>">
+                <input type="hidden" name="id" value="<?= isset($inversion->id) ? $inversion->id : '' ?>">
 
                 <div class="mb-3 form-group has-validation">
                     <label class="form-label">Detalles</label>

@@ -33,11 +33,6 @@ class Dashboard extends Controller
 
     public function create()
     {
-        return view('dashboard/create', []);
-    }
-
-    public function store()
-    {
         $data = $this->request()->isPost();
 
         $valid = $this->validate($data, [
@@ -75,72 +70,64 @@ class Dashboard extends Controller
             }
         }
 
-        return view('dashboard/create',  [
-            'err' =>  $valid,
-            'data' => (object)$data,
-        ]);
+        return view('dashboard/create');
     }
 
     public function edit()
     {
-        $id = $this->request()->isGet();
-        $inversion = $this->inversionModel->where('id', $id["id"])->first();
 
-        return view('dashboard/edit', [
-            'inversion' => $inversion
-        ]);
-    }
+        if (!empty($_POST)) {
+            $data = $this->request()->isPost();
+            $inversion = $this->inversionModel->where('id', $data["id"])->first();
 
-    public function update()
-    {
-        $data = $this->request()->isPost();
-        $inversion = $this->inversionModel->where('id', $data['id'])->first();
-
-        $valid = $this->validate($data, [
-            'features' => 'required|alpha_numeric_space',
-            'cant' => 'required|numeric',
-            'price' => 'required|numeric',
-        ]);
-
-        if ($valid !== true) {
-
-            return view('dashboard/edit',  [
-                'err' =>  $valid,
-                'data' => (object)$data,
-                'id' => $data['id']
+            $valid = $this->validate($data, [
+                'features' => 'required|alpha_numeric_space',
+                'cant' => 'required|numeric',
+                'price' => 'required|numeric',
             ]);
-        } else {
 
-            if ($data['photo']["tmp_name"] !== '') {
+            if ($valid !== true) {
 
-                $nombreImagen = md5(uniqid(rand(), true)) . '.jpg';
-
-                $image = Imagex::make($data['photo']["tmp_name"])->fit(300, 500);
-                $data['photo'] = $nombreImagen;
-
-                if (!is_dir(DIRIMG)) {
-                    mkdir(DIRIMG);
-                }
-
-                if (file_exists(DIRIMG . $inversion->photo)) {
-                    unlink(DIRIMG . $inversion->photo);
-                }
-
-                $image->save(DIRIMG . $nombreImagen);
+                return view('dashboard/edit',  [
+                    'err' =>  $valid,
+                    'data' => (object)$data,
+                    'id' => $inversion->id,
+                    'inversion' => $inversion
+                ]);
             } else {
-                $data['photo'] = null;
-            }
+                if ($data['photo']["tmp_name"] !== '') {
 
-            $result = $this->inversionModel->update($data['id'], $data);
-            if ($result["result"] == 'ok') {
-                return $this->redirect('dashboard');
+                    $nombreImagen = md5(uniqid(rand(), true)) . '.jpg';
+
+                    $image = Imagex::make($data['photo']["tmp_name"])->fit(300, 500);
+                    $data['photo'] = $nombreImagen;
+
+                    if (!is_dir(DIRIMG)) {
+                        mkdir(DIRIMG);
+                    }
+
+                    if (file_exists(DIRIMG . $inversion->photo)) {
+                        unlink(DIRIMG . $inversion->photo);
+                    }
+
+                    $image->save(DIRIMG . $nombreImagen);
+                } else {
+                    $data['photo'] = null;
+                }
+
+                $result = $this->inversionModel->update($data['id'], $data);
+                if ($result["result"] == 'ok') {
+                    return $this->redirect('dashboard');
+                }
             }
+        } else {
+            $id = $this->request()->isGet();
+            $inversion = $this->inversionModel->where('id', $id["id"])->first();
+
+            return view('dashboard/edit', [
+                'inversion' => $inversion
+            ]);
         }
-
-        return view('dashboard/edit',  [
-            'err' =>  $valid,
-            'data' => (object)$data,
-        ]);
     }
 
     public function destroy()

@@ -15,7 +15,7 @@ $session = new Session;
     </div>
     <div class="card-body">
         <div class="container">
-            <form method="POST" action="<?= base_url('/dashboard/store') ?>" enctype="multipart/form-data">
+            <form method="POST" action="<?= base_url('/dashboard/create') ?>" enctype="multipart/form-data">
                 <input type="hidden" name="id_user" value="<?= $session->get('user')->id ?>">
 
                 <div class="mb-3 form-group has-validation">
