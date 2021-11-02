@@ -5,6 +5,7 @@
     <div class="card-header">
         <a class="btn btn-primary" href="<?= base_url('/dashboard/create') ?>" role="button">Registrar Gasto</a>
         <a class="btn btn-danger" href="<?= base_url('/dashboard/eliminados') ?>" role="button">Gastos Eliminados</a>
+        <a class="btn border border-dark rounded" href="#">Total: S/<?= isset($suma) ? number_format($suma, 2., '.', ',') : '0' ?></a>
     </div>
     <div class="card-body">
 
@@ -29,7 +30,7 @@
                         <td><?= $inv->features ?></td>
                         <td><?= $inv->cant ?></td>
                         <td><?= $inv->price ?></td>
-                        <td><?= ($inv->price * $inv->cant) ?></td>
+                        <td>S/<?= number_format(($inv->price * $inv->cant), 2., '.', ',') ?></td>
                         <td><?= $inv->created_at ?></td>
                         <td>
                             <button url="<?= base_url('/dashboard/ver?id=' . $inv->id) ?>" class="btn btn-info verArchivo"><i class="fas fa-eye"></i></button>

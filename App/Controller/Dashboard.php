@@ -20,8 +20,14 @@ class Dashboard extends Controller
     {
         $inversiones = $this->inversionModel->where('estado', 1)->findAll();
 
+        $suma = 0;
+        foreach ($inversiones as $inv) {
+            $suma += $inv->cant * $inv->price;
+        }
+
         return view('dashboard/index', [
-            'inversiones' => $inversiones
+            'inversiones' => $inversiones,
+            'suma' => $suma
         ]);
     }
 
