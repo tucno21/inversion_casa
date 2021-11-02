@@ -64,6 +64,7 @@ class Model
         $values = implode("', '", array_values($send));
 
         $query = "INSERT INTO " . static::$table . "($columns) VALUES ('$values')";
+
         $stmt = self::$db->query($query);
 
         if (self::$db->affected_rows > 0 || $stmt) {

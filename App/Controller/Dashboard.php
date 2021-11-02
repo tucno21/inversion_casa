@@ -53,11 +53,11 @@ class Dashboard extends Controller
                 $image = Imagex::make($data['photo']["tmp_name"])->fit(300, 500);
                 $data['photo'] = $nombreImagen;
 
-                if (!is_dir(DIRPUBLIC . '/img/')) {
-                    mkdir(DIRPUBLIC . '/img/');
+                if (!is_dir(DIRIMG)) {
+                    mkdir(DIRIMG);
                 }
 
-                $image->save(DIRPUBLIC . '/img/' . $nombreImagen);
+                $image->save(DIRIMG . $nombreImagen);
             } else {
                 $data['photo'] = null;
             }
@@ -78,7 +78,6 @@ class Dashboard extends Controller
     public function edit()
     {
         $id = $this->request()->isGet();
-
         $inversion = $this->inversionModel->where('id', $id["id"])->first();
 
         return view('dashboard/edit', [
@@ -113,15 +112,15 @@ class Dashboard extends Controller
                 $image = Imagex::make($data['photo']["tmp_name"])->fit(300, 500);
                 $data['photo'] = $nombreImagen;
 
-                if (!is_dir(DIRPUBLIC . '/img/')) {
-                    mkdir(DIRPUBLIC . '/img/');
+                if (!is_dir(DIRIMG)) {
+                    mkdir(DIRIMG);
                 }
 
-                if (file_exists(DIRPUBLIC . '/img/' . $inversion->photo)) {
-                    unlink(DIRPUBLIC . '/img/' . $inversion->photo);
+                if (file_exists(DIRIMG . $inversion->photo)) {
+                    unlink(DIRIMG . $inversion->photo);
                 }
 
-                $image->save(DIRPUBLIC . '/img/' . $nombreImagen);
+                $image->save(DIRIMG . $nombreImagen);
             } else {
                 $data['photo'] = null;
             }
@@ -156,6 +155,16 @@ class Dashboard extends Controller
 
         return view('dashboard/eliminados', [
             'inversiones' => $inversiones
+        ]);
+    }
+
+    public function ver()
+    {
+        $id = $this->request()->isGet();
+        $inversion = $this->inversionModel->where('id', $id["id"])->first();
+
+        return view('dashboard/ver', [
+            'inv' => $inversion
         ]);
     }
 }

@@ -8,3 +8,6 @@ $localhost = 'localhost';
 $user = 'root';
 $password = 'root';
 $dbName = 'gasto_casa';
+
+//nombre de la carpeta para almacenar imagenes
+$imageFolder = 'img';

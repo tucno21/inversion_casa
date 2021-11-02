@@ -11,14 +11,14 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Registrado:</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">F-registro</th>
-                    <th scope="col">Acciones</th>
+                    <th>#</th>
+                    <th>Registrado:</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                    <th>F-registro</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,8 +32,9 @@
                         <td><?= ($inv->price * $inv->cant) ?></td>
                         <td><?= $inv->created_at ?></td>
                         <td>
-                            <a href="<?= base_url('/dashboard/edit?id=' . $inv->id) ?>" class="btn btn-warning">Editar</a>
-                            <a href="<?= base_url('/dashboard/delete?id=' . $inv->id) ?>" class="btn btn-danger">Eliminar</a>
+                            <a href="<?= base_url('/dashboard/ver?id=' . $inv->id) ?>" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                            <a href="<?= base_url('/dashboard/edit?id=' . $inv->id) ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                            <a href="<?= base_url('/dashboard/delete?id=' . $inv->id) ?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 <?php endforeach ?>

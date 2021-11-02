@@ -24,6 +24,8 @@ $routes->post('/dashboard/update', [Dashboard::class, 'update']);
 $routes->get('/dashboard/delete', [Dashboard::class, 'destroy']);
 $routes->get('/dashboard/eliminados', [Dashboard::class, 'eliminados']);
 
+$routes->get('/dashboard/ver', [Dashboard::class, 'ver']);
+
 
 
 //ejecutar los los parametros enviados por get y post

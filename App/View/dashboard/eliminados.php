@@ -17,6 +17,7 @@
                     <th scope="col">Precio</th>
                     <th scope="col">Total</th>
                     <th scope="col">F-registro</th>
+                    <th scope="col">F-eliminación</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
                         <td><?= $inv->price ?></td>
                         <td><?= ($inv->price * $inv->cant) ?></td>
                         <td><?= $inv->created_at ?></td>
+                        <td><?= $inv->updated_at ?></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
