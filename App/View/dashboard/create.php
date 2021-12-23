@@ -41,7 +41,7 @@ $session = new Session;
 
                     <div class="col-12 col-md-6 mb-3 form-group has-validation">
                         <label class="form-label">Precio</label>
-                        <input type="number" class="form-control <?= isset($err->price) ? 'is-invalid' : '' ?>" name="price" value="<?= isset($data->price) ? $data->price : '' ?>" />
+                        <input type="number" min="0.0" step="any" class="form-control <?= isset($err->price) ? 'is-invalid' : '' ?>" name="price" value="<?= isset($data->price) ? $data->price : '' ?>" />
                         <?php if (isset($err->price)) : ?>
                             <div class="invalid-feedback">
                                 <?= $err->price ?>

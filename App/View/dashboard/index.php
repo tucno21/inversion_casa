@@ -9,7 +9,8 @@
     </div>
     <div class="card-body">
         <div class="table-responsive-sm">
-            <table class="table table-sm table-bordered table-striped">
+            <!-- <table id="myTable" class="table table-sm table-bordered table-striped"> -->
+            <table id="myTable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -22,7 +23,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody_gastos">
                     <?php foreach ($inversiones as $inv) : ?>
                         <tr>
                             <th scope="row"><?= $inv->id ?></th>
@@ -33,9 +34,9 @@
                             <td>S/<?= number_format(($inv->price * $inv->cant), 2., '.', ',') ?></td>
                             <td><?= $inv->created_at ?></td>
                             <td>
-                                <button url="<?= base_url('/dashboard/ver?id=' . $inv->id) ?>" class="btn btn-info verArchivo"><i class="fas fa-eye"></i></button>
-                                <button url="<?= base_url('/dashboard/edit?id=' . $inv->id) ?>" class="btn btn-warning alertEdit"><i class="fas fa-edit"></i></button>
-                                <button url="<?= base_url('/dashboard/delete?id=' . $inv->id) ?>" class="btn btn-danger alertDelete"><i class="fas fa-trash"></i></button>
+                                <button vergasto="<?= $inv->id ?>" url="<?= base_url('/dashboard/ver?id=' . $inv->id) ?>" class="btn btn-info btn-sm  verArchivo"><i class="fas fa-eye"></i></button>
+                                <button editartgasto="<?= $inv->id ?>" url="<?= base_url('/dashboard/edit?id=' . $inv->id) ?>" class="btn btn-warning btn-sm  alertEdit"><i class="fas fa-edit"></i></button>
+                                <button eliminargasto="<?= $inv->id ?>" url="<?= base_url('/dashboard/delete?id=' . $inv->id) ?>" class="btn btn-danger btn-sm alertDelete"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
                     <?php endforeach ?>

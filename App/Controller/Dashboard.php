@@ -36,7 +36,7 @@ class Dashboard extends Controller
         $data = $this->request()->isPost();
 
         $valid = $this->validate($data, [
-            'features' => 'required|alpha_numeric_space',
+            'features' => 'required|string',
             'cant' => 'required|numeric',
             'price' => 'required|numeric',
         ]);
@@ -81,7 +81,7 @@ class Dashboard extends Controller
             $inversion = $this->inversionModel->where('id', $data["id"])->first();
 
             $valid = $this->validate($data, [
-                'features' => 'required|alpha_numeric_space',
+                'features' => 'required|string',
                 'cant' => 'required|numeric',
                 'price' => 'required|numeric',
             ]);
